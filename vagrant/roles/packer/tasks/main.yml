@@ -1,0 +1,11 @@
+---
+ - name: install packer dependencies
+   yum: name={{ item }} state=present
+   with_items:
+       - unzip
+ - name: install packer cli tools
+   unarchive:
+       src: https://releases.hashicorp.com/packer/0.10.1/packer_0.10.1_linux_amd64.zip
+       dest: /usr/local/bin
+       copy: no
+       creates: /usr/local/bin/packer
