@@ -1,0 +1,40 @@
+{
+    "builders": [
+        {
+            "boot_command": [
+                "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos7-everything-kickstart.cfg<enter><wait>"
+            ],
+            "http_directory": "srv",
+            "disk_size": 40000,
+            "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
+            "guest_os_type": "RedHat_64",
+            "iso_url": "artifacts/centos-7.2.1511-everything.iso",
+            "iso_checksum": "148449e661535f52aa846aa4a0112798f9153df8526b83e76075560a1de3accf",
+            "iso_checksum_type": "sha256",
+            "vboxmanage": [
+                ["modifyvm", "{{.Name}}", "--memory", "2048"]
+            ],
+            "ssh_username": "root",
+            "ssh_password": "root",
+            "ssh_wait_timeout": "20m",
+            "ssh_pty": "true",
+            "shutdown_command": "echo 'root' | sudo -S shutdown -P now",
+            "type": "virtualbox-iso"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'root' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+            "scripts": [
+                "scripts/install-guest-additions.sh"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "output": "centos7-everything-{{ .Provider }}.box"
+        }
+    ]
+}

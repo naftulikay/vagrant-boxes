@@ -1,1 +1,5 @@
 .vagrant
+packer_cache
+packer
+output-*
+*.box
