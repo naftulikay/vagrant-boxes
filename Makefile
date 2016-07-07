@@ -33,6 +33,3 @@ download-stacki:
 	# test existence of the iso and conditionally download
 	test -f ${STACKI_ISO_PATH} || \
 		curl -o ${STACKI_ISO_PATH} ${STACKI_ISO_URL}
-
-build-stacki-7: download-centos7-everything download-stacki
-	echo true

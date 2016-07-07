@@ -19,7 +19,8 @@
             "ssh_wait_timeout": "20m",
             "ssh_pty": "true",
             "shutdown_command": "echo 'root' | sudo -S shutdown -P now",
-            "type": "virtualbox-iso"
+            "type": "virtualbox-iso",
+            "vm_name": "centos7-everything"
         }
     ],
     "provisioners": [
@@ -34,6 +35,7 @@
     "post-processors": [
         {
             "type": "vagrant",
+            "keep_input_artifact": true,
             "output": "centos7-everything-{{ .Provider }}.box"
         }
     ]

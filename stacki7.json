@@ -1,8 +1,35 @@
 {
+    "provisioners": [
+        { "type": "file", "source": "artifacts/centos-7.2.1511-everything.iso", "destination": "/tmp/centos7.iso" },
+        { "type": "file", "source": "artifacts/stacki-3.2-7.x.x86_64.disk1.iso", "destination": "/tmp/stacki.iso" },
+        { "type": "file", "source": "conf/stacki/rolls.xml", "destination": "/tmp/rolls.xml" },
+        { "type": "file", "source": "conf/stacki/site.attrs", "destination": "/tmp/site.attrs" },
+        {
+            "type": "shell",
+            "execute_command": "echo 'root' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+            "scripts": [
+                "scripts/install-stacki.sh"
+            ]
+        }
+    ],
     "builders": [
         {
             "type": "virtualbox-ovf",
-            "source_path": "./centos7-everything-virtualbox.box"
+            "source_path": "output-virtualbox-iso/centos7-everything.ovf",
+            "vboxmanage": [
+                ["modifyvm", "{{.Name}}", "--memory", "2048"]
+            ],
+            "ssh_username": "root",
+            "ssh_password": "root",
+            "ssh_wait_timeout": "20m",
+            "ssh_pty": "true",
+            "shutdown_command": "echo 'root' | sudo -S shutdown -P now"
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "output": "stacki-3.2-7.x-{{ .Provider }}.box"
         }
     ]
 }
