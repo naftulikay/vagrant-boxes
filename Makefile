@@ -1,11 +1,11 @@
 # isos
 CENTOS7_ISO_PATH=artifacts/centos-7.2.1511-everything.iso
-CENTOS7_ISO_URL=https://mirrors.kernel.org/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-Everything-1511.iso
+CENTOS7_ISO_URL=http://archive.kernel.org/centos-vault/7.2.1511/isos/x86_64/CentOS-7-x86_64-Everything-1511.iso
 STACKI_ISO_PATH=artifacts/stacki-3.2-7.x.x86_64.disk1.iso
 STACKI_ISO_URL=https://stacki.s3.amazonaws.com/public/pallets/3.2/open-source/stacki-3.2-7.x.x86_64.disk1.iso
 # checksums and sigs
 CENTOS7_ISO_GPGKEY=6341AB2753D78A78A7C27BB124C6A8A7F4A80EB5
-CENTOS7_ISO_HASH_SIG_URL=https://mirrors.kernel.org/centos/7.2.1511/isos/x86_64/sha256sum.txt.asc
+CENTOS7_ISO_HASH_SIG_URL=http://archive.kernel.org/centos-vault/7.2.1511/isos/x86_64/sha256sum.txt.asc
 CENTOS7_ISO_HASH_SIG_PATH=artifacts/centos-7.2.1511-everything.sha256sums.txt.asc
 CENTOS7_LOCKFILE=artifacts/centos-7.2.1511-everything.lock
 
