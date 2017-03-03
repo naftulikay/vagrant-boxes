@@ -26,3 +26,8 @@ sed -i -r "s/^GATEWAY=.*$/GATEWAY=10.0.2.2/" /etc/sysconfig/network
 # clean everything up
 rm /tmp/stacki.iso
 rm /tmp/centos7.iso
+systemctl stop foundation-mariadb
+sh -c 'dd if=/dev/zero of=/boot/zero bs=1024k || :'
+rm -f /boot/zero
+sh -c 'dd if=/dev/zero of=/tmp/zero bs=1024k || :'
+rm -f /tmp/zero
